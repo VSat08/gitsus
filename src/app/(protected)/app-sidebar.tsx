@@ -11,6 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 import useProject from "@/hooks/use-project";
@@ -56,11 +57,14 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" variant="floating">
       <SidebarHeader>
-        <div className="flex items-center gap-2">
-          <Image src="/Logo.svg" alt="Logo" width={40} height={40} />
-          {open && (
-            <h1 className="text-xl font-bold text-primary/90">GitSus</h1>
-          )}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Image src="/Logo.svg" alt="Logo" width={40} height={40} />
+            {open && (
+              <h1 className="text-xl font-bold text-primary/90">GitSus</h1>
+            )}{" "}
+          </div>
+          {open && <SidebarTrigger />}
         </div>
       </SidebarHeader>
       <SidebarContent>
