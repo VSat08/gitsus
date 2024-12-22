@@ -19,8 +19,8 @@ model User {
     firstName String?
     lastName  String?
 
-    emailAddress  String          @unique
-    credits       Int             @default(150)
+    emailAddress   String          @unique
+    credits        Int             @default(150)
     UserToProjects UserToProject[]
 }
 
@@ -32,8 +32,10 @@ model Project {
     name      String
     githubUrl String
 
-    deletedAt     DateTime?
+    deletedAt DateTime?
+
     UserToProjects UserToProject[]
+    commits        Commit[]
 }
 
 model UserToProject {
@@ -48,4 +50,21 @@ model UserToProject {
     project Project @relation(fields: [projectId], references: [id])
 
     @@unique([userId, projectId])
+}
+
+model Commit {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    projectId String
+    project   Project @relation(fields: [projectId], references: [id])
+
+    commitMessage      String
+    commitHash         String
+    commitAuthorName       String
+    commitAuthorAvatar String
+    commitDate         DateTime
+
+    summary String
 }
