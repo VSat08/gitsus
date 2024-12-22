@@ -22,6 +22,7 @@ import {
   LayoutDashboard,
   Plus,
   Presentation,
+  Settings,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -64,7 +65,7 @@ export function AppSidebar() {
               <h1 className="text-xl font-bold text-primary/90">GitSus</h1>
             )}{" "}
           </div>
-          {open && <SidebarTrigger />}
+          {/* {open && <SidebarTrigger />} */}
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -130,6 +131,15 @@ export function AppSidebar() {
                   </Link>
                 </SidebarMenuItem>
               )}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup className="mt-auto">
+          {/* <SidebarGroupLabel>Projects</SidebarGroupLabel> */}
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>{<SidebarTrigger />}</SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
