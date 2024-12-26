@@ -11,6 +11,7 @@ const CommitLog = () => {
   const { projectId, project } = useProject();
   const { data: commits } = api.project.getCommits.useQuery({ projectId });
 
+
   return (
     <>
       <ul className="space-y-6">

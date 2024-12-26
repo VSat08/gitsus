@@ -2,12 +2,14 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+    provider   = "postgresql"
+    url        = env("DATABASE_URL")
+    extensions = [vector]
 }
 
 model User {
@@ -22,6 +24,7 @@ model User {
     emailAddress   String          @unique
     credits        Int             @default(150)
     UserToProjects UserToProject[]
+    questionsAsked Question[]
 }
 
 model Project {
@@ -34,8 +37,10 @@ model Project {
 
     deletedAt DateTime?
 
-    UserToProjects UserToProject[]
-    commits        Commit[]
+    UserToProjects       UserToProject[]
+    commits              Commit[]
+    sourceCodeEmbeddings SourceCodeEmbedding[]
+    savedQuestions       Question[]
 }
 
 model UserToProject {
@@ -52,6 +57,35 @@ model UserToProject {
     @@unique([userId, projectId])
 }
 
+model SourceCodeEmbedding {
+    id String @id @default(cuid())
+
+    summaryEmbedding Unsupported("vector(768)")?
+    sourceCode       String
+    fileName         String
+    summary          String
+
+    projectId String
+    project   Project @relation(fields: [projectId], references: [id])
+}
+
+model Question {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    question String
+    answer   String
+
+    filesReferences Json?
+
+    projectId String
+    project   Project @relation(fields: [projectId], references: [id])
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
+}
+
 model Commit {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
@@ -62,7 +96,7 @@ model Commit {
 
     commitMessage      String
     commitHash         String
-    commitAuthorName       String
+    commitAuthorName   String
     commitAuthorAvatar String
     commitDate         DateTime
 
