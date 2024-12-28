@@ -63,6 +63,7 @@ const AskQuestionCard = () => {
                           <Button
                               disabled={saveAnswer.isPending}
                 variant="outline"
+                className="border-2 border-primary"
                 onClick={() => {
                   saveAnswer.mutate({
                     projectId: project!.id,
