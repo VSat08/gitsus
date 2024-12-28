@@ -20,6 +20,7 @@ import CodeReferences from "./code-references";
 import { Save } from "lucide-react";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
+import useRefetch from "@/hooks/use-refetch";
 
 const AskQuestionCard = () => {
   const { project } = useProject();
@@ -51,6 +52,7 @@ const AskQuestionCard = () => {
     setLoading(false);
   };
 
+  const refetch = useRefetch();
   return (
     <>
       <Dialog open={open} onOpenChange={setOpen}>
@@ -60,32 +62,35 @@ const AskQuestionCard = () => {
               <DialogTitle>
                 <Image src="/Logo.svg" alt="GitSus" width={40} height={40} />
               </DialogTitle>
-                          <Button
-                              disabled={saveAnswer.isPending}
+              <Button
+                disabled={saveAnswer.isPending}
                 variant="outline"
                 className="border-2 border-primary"
                 onClick={() => {
-                  saveAnswer.mutate({
-                    projectId: project!.id,
-                    question,
-                    answer,
-                    filesReferences,
-                  },
-                      {
-                          onSuccess: () => {
-                             toast.success('Answer saved !')
-                          },
-                          onError: () => {
-                              toast.error('Failed to save answer!')
-                          }
-                  })
+                  saveAnswer.mutate(
+                    {
+                      projectId: project!.id,
+                      question,
+                      answer,
+                      filesReferences,
+                    },
+                    {
+                      onSuccess: () => {
+                        toast.success("Answer saved!");
+                        refetch();
+                      },
+                      onError: () => {
+                        toast.error("Failed to save answer!");
+                      },
+                    },
+                  );
                 }}
               >
                 <Save /> Save Answer
               </Button>
             </div>
           </DialogHeader>
-          <div className="max-h-[70vh] max-w-[80vw] overflow-scroll bg-red-100">
+          <div className="max-h-[70vh] max-w-[80vw] overflow-scroll">
             <MDEditor.Markdown
               source={answer}
               className="h-full max-h-[40vh] w-full overflow-auto p-4"

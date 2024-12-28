@@ -2,6 +2,7 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { pollCommits } from "@/lib/github";
 import { indexGithubRepo } from "@/lib/github-loader";
+import { getRequestInfo } from "@trpc/server/unstable-core-do-not-import";
 
 export const projectRouter = createTRPCRouter({
   createProject: protectedProcedure
@@ -73,6 +74,18 @@ export const projectRouter = createTRPCRouter({
           projectId: input.projectId,
           question: input.question,
           userId: ctx.user.userId!,
+        },
+      });
+    }),
+  getQuestions: protectedProcedure
+    .input(z.object({ projectId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.question.findMany({
+        where: {
+          projectId: input.projectId,
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       });
     }),
