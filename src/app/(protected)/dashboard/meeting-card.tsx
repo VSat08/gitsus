@@ -9,10 +9,16 @@ import { Presentation, Upload } from "lucide-react";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
+import { api } from "@/trpc/react";
+import useProject from "@/hooks/use-project";
+import { useRouter } from "next/navigation";
 
 const MeetingCard = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const router = useRouter();
+  const { project } = useProject();
+  const uploadMeeting = api.project.uploadMeeting.useMutation();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -27,6 +33,8 @@ const MeetingCard = () => {
           return;
         }
 
+        if (!project) return;
+
         setIsUploading(true);
         const file = acceptedFiles[0];
 
@@ -36,7 +44,7 @@ const MeetingCard = () => {
           return;
         }
 
-        const downloadURL = await uploadFile(
+        const downloadURL = (await uploadFile(
           file,
           ({ progress, isComplete }) => {
             setProgress(progress);
@@ -44,11 +52,18 @@ const MeetingCard = () => {
               setIsUploading(false);
             }
           },
-        );
+        )) as string;
+
+        uploadMeeting.mutate({
+          projectId: project?.id,
+          meetingUrl: downloadURL,
+          name: file.name,
+        });
 
         toast.success("Meeting uploaded successfully!");
-        console.log("File URL:", downloadURL);
-        window.alert(downloadURL);
+        router.push("/meetings");
+        // console.log("File URL:", downloadURL);
+        // window.alert(downloadURL);
       } catch (error) {
         console.error("Upload error:", error);
         toast.error("Failed to upload meeting");

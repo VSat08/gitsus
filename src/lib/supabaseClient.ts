@@ -155,7 +155,7 @@ export async function uploadFile(
         data: { publicUrl },
       } = supabase.storage.from("uploads").getPublicUrl(filePath);
 
-      resolve(publicUrl);
+      resolve(publicUrl as string );
     } catch (error) {
       console.error("Error uploading file:", error);
       reject(error);
