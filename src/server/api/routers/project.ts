@@ -1,4 +1,5 @@
-import { z } from "zod";
+// this is project.ts file
+import { string, z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { pollCommits } from "@/lib/github";
 import { indexGithubRepo } from "@/lib/github-loader";
@@ -109,6 +110,7 @@ export const projectRouter = createTRPCRouter({
           status: "PROCESSING",
         },
       });
+      return meeting;
     }),
   getMeetings: protectedProcedure
     .input(z.object({ projectId: z.string() }))
@@ -120,6 +122,23 @@ export const projectRouter = createTRPCRouter({
         include: {
           issues: true,
         },
+      });
+    }),
+  deleteMeeting: protectedProcedure
+    .input(z.object({ meetingId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.db.meeting.delete({
+        where: {
+          id: input.meetingId,
+        },
+      });
+    }),
+  getMeetingById: protectedProcedure
+    .input(z.object({ meetingId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.meeting.findUnique({
+        where: { id: input.meetingId },
+        include: { issues: true },
       });
     }),
 });
