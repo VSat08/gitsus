@@ -26,7 +26,7 @@ export default function RootLayout({
     // @ts-ignore: Suppress ClerkProvider type error
     <ClerkProvider>
       <html lang="en" className={lato.className}>
-        <body>
+        <body className="flex flex-col items-center justify-center h-screen">
           <TRPCReactProvider>{children}</TRPCReactProvider>
           <Toaster richColors />
         </body>
