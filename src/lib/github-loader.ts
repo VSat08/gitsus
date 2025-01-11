@@ -5,6 +5,41 @@ import { generateEmbedding, summariseCode } from "./gemini";
 import { db } from "@/server/db";
 import { Octokit } from "octokit";
 
+// Optimized file count
+const getFileCountOptimized = async (
+  path: string,
+  octokit: Octokit,
+  githubOwner: string,
+  githubRepo: string,
+) => {
+  let fileCount = 0;
+  const stack = [path];
+
+  while (stack.length > 0) {
+    const currentPath = stack.pop();
+    const { data } = await octokit.rest.repos.getContent({
+      owner: githubOwner,
+      repo: githubRepo,
+      path: currentPath!,
+    });
+
+    if (Array.isArray(data)) {
+      for (const item of data) {
+        if (item.type === "dir") {
+          stack.push(item.path);
+        } else {
+          fileCount++;
+        }
+      }
+    } else {
+      fileCount++;
+    }
+  }
+
+  return fileCount;
+};
+
+// Monolith file count
 const getFileCount = async (
   path: string,
   octokit: Octokit,
@@ -36,7 +71,7 @@ const getFileCount = async (
     if (directories.length > 0) {
       const directoryCounts = await Promise.all(
         directories.map((dirPath) =>
-          getFileCount(dirPath, octokit, githubOwner, githubRepo, 0),
+          getFileCountOptimized(dirPath, octokit, githubOwner, githubRepo),
         ),
       );
 
@@ -60,7 +95,12 @@ export const checkCredits = async (githubUrl: string, githubToken?: string) => {
     return 0;
   }
 
-  const fileCount = await getFileCount("", octokit, githubOwner, githubRepo, 0);
+  const fileCount = await getFileCountOptimized(
+    "",
+    octokit,
+    githubOwner,
+    githubRepo,
+  );
 
   return fileCount;
 };
