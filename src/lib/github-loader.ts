@@ -110,8 +110,8 @@ export const loadGithubRepo = async (
   githubToken?: string,
 ) => {
   const loader = new GithubRepoLoader(githubUrl, {
-    // accessToken: githubToken || "",
-    accessToken: githubToken || process.env.GITHUB_TOKEN,
+    accessToken: githubToken || "",
+    // accessToken: githubToken || process.env.GITHUB_TOKEN,
     branch: "main",
     ignoreFiles: [
       "package-lock.json",
