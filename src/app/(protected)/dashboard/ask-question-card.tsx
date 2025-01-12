@@ -65,7 +65,7 @@ const AskQuestionCard = () => {
               <Button
                 disabled={saveAnswer.isPending}
                 variant="outline"
-                className="border-2 border-primary"
+                className="border-2 border-primary hover:bg-primary"
                 onClick={() => {
                   saveAnswer.mutate(
                     {
@@ -90,10 +90,10 @@ const AskQuestionCard = () => {
               </Button>
             </div>
           </DialogHeader>
-          <div className="max-h-[70vh] max-w-[80vw] overflow-scroll">
+          <div className="max-h-[70vh] max-w-[80vw] overflow-auto">
             <MDEditor.Markdown
               source={answer}
-              className="h-full max-h-[40vh] w-full overflow-auto p-4"
+              className="h-fit  w-full  p-4"
             />
             <div className="h-2"></div>
             <CodeReferences filesReferences={filesReferences} />
@@ -118,10 +118,11 @@ const AskQuestionCard = () => {
           <CardTitle>Ask a question</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="flex flex-col items-end">
             <Textarea
               placeholder="Which file should I edit to change the home page ?"
               value={question}
+              className="h-24"
               onChange={(e) => setQuestion(e.target.value)}
             />
             <div className="h-4"></div>

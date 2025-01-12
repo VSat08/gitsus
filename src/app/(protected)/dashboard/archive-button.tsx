@@ -62,7 +62,7 @@ const ArchiveButton = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="hover:bg-secondary">Cancel</AlertDialogCancel>
 
             <Button
               variant="destructive"

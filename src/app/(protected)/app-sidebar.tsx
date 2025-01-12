@@ -82,7 +82,7 @@ export function AppSidebar() {
                         {
                           "!bg-primary !text-white": pathname === item.url,
                         },
-                        "list-none",
+                        "list-none text-secondary-foreground",
                       )}
                     >
                       <item.icon />
@@ -98,7 +98,7 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Projects</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="text-secondary-foreground">
               {projects?.map((project) => (
                 <SidebarMenuItem key={project.name}>
                   <SidebarMenuButton asChild>

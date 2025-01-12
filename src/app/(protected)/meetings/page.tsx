@@ -63,7 +63,7 @@ const MeetingsPage = () => {
 
             <div className="flex flex-none items-center gap-x-4">
               <Link href={`/meetings/${meeting.id}`}>
-                <Button size="sm" variant="outline">
+                <Button size="sm" variant="outline" className="hover:bg-secondary">
                   View Meeting
                 </Button>
               </Link>

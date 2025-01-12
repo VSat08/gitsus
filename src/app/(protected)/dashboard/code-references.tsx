@@ -5,7 +5,11 @@ import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { darkula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import {
+  atomDark,
+  materialDark,
+} from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type Props = {
   filesReferences: {
@@ -20,15 +24,15 @@ const CodeReferences = ({ filesReferences }: Props) => {
 
   if (filesReferences.length === 0) return null;
   return (
-    <div className="max-w-[80vw] p-2 scroll">
+    <div className="scroll max-w-[80vw] p-2">
       <Tabs value={tab} onValueChange={setTab}>
-        <div className="flex gap-2 overflow-scroll rounded-md bg-gray-200 p-1">
+        <div className="flex flex-wrap gap-2 rounded-md p-1">
           {filesReferences.map((file) => (
             <button
               key={file.fileName}
               onClick={() => setTab(file.fileName)}
               className={cn(
-                "whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                "whitespace-nowrap rounded-md border border-primary px-3 py-1.5 text-xs font-medium transition-colors",
                 {
                   "bg-primary text-primary-foreground": tab === file.fileName,
                 },
@@ -42,9 +46,14 @@ const CodeReferences = ({ filesReferences }: Props) => {
           <TabsContent
             key={file.fileName}
             value={file.fileName}
-            className="max-h-[40vh] max-w-7xl overflow-scroll rounded-md"
+            className="h-fit w-full overflow-x-auto rounded-md"
           >
-            <SyntaxHighlighter language="typescript" style={materialDark}>
+            <SyntaxHighlighter
+              wrapLongLines={true}
+              language="typescript"
+              style={atomDark}
+              customStyle={{ fontSize: "12px" }}
+            >
               {file.sourceCode}
             </SyntaxHighlighter>
           </TabsContent>

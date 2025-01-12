@@ -16,7 +16,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { api, RouterOutputs } from "@/trpc/react";
-import { VideoIcon } from "lucide-react";
+import { ChevronLeft, VideoIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type Props = {
@@ -29,20 +30,25 @@ const IssuesList = ({ meetingId }: Props) => {
     { refetchInterval: 4000 },
   );
 
+   const router = useRouter();
+
   if (isLoading || !meeting) return <div>Loading...</div>;
   return (
     <>
+      <div className="h-fit w-fit cursor-pointer rounded-md border p-2 hover:bg-secondary" onClick={()=>router.back()}>
+        <ChevronLeft />
+      </div>
       <div className="p-8">
         <div className="mx-auto flex max-w-2xl items-center justify-between gap-x-8 border-b pb-6 lg:mx-0 lg:max-w-none">
           <div className="flex items-center gap-x-6">
-            <div className="rounded-full border bg-white p-3">
+            <div className="rounded-full border p-3">
               <VideoIcon className="h-6 w-6" />
             </div>
             <h1>
-              <div className="text-sm leading-6 text-gray-600">
+              <div className="text-sm leading-6 text-secondary">
                 Meeting on {meeting.createdAt.toLocaleDateString()}
               </div>
-              <div className="mt-1 text-base font-semibold leading-6 text-gray-900">
+              <div className="mt-1 text-base font-semibold leading-6 text-secondary-foreground">
                 {meeting.name}
               </div>
             </h1>
@@ -70,7 +76,7 @@ function IssueCard({
   return (
     <>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-md rounded-lg md:max-w-xl">
           <DialogHeader>
             <DialogTitle className="sm:text-2xl">{issue.gist}</DialogTitle>
             <DialogDescription className="text-xs">
