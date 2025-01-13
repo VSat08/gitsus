@@ -35,7 +35,7 @@
     /* Darker muted color for less important sections */
     --muted-foreground: 0 0% 75%;
     /* Light muted text for contrast */
-    --accent: 50 100% 60%;
+    --accent: 260 50% 25%;
     /* Bright green accent for high contrast highlights */
     --accent-foreground: 0 0% 100%;
     /* White text on accent elements */
