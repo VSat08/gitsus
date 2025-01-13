@@ -38,6 +38,9 @@ const QAPage = () => {
       <h1 className="text-xl font-semibold">Saved Questions</h1>
       <div className="h-2"></div>
       <div className="flex flex-col gap-2">
+        {questions?.length === 0 && (
+          <p className="mx-auto py-24 text-sm">No saved Question</p>
+        )}
         {questions?.map((question, index) => {
           return (
             <React.Fragment key={question.id}>

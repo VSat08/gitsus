@@ -57,7 +57,7 @@ const CreatePage = () => {
         <img
           src="/versioncontrol.svg"
           alt="version control"
-          className="h-36 w-auto bg-green-200"
+          className="h-36 w-auto"
         />
         <div>
           <div>
@@ -126,7 +126,7 @@ const CreatePage = () => {
             {!hasEnoughCredits && (
               <Link
                 href="/billing"
-                className="flex w-full items-center justify-center  mt-4 text-sm text-primary"
+                className="mt-4 flex w-full items-center justify-center text-sm text-primary"
               >
                 Buy credits
                 <TrendingUp />

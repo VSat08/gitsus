@@ -17,7 +17,7 @@ import React, { useState } from "react";
 import { askQuestion } from "./actions";
 import { readStreamableValue } from "ai/rsc";
 import CodeReferences from "./code-references";
-import { Save } from "lucide-react";
+import { LoaderPinwheel, Save } from "lucide-react";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
 import useRefetch from "@/hooks/use-refetch";
@@ -91,10 +91,7 @@ const AskQuestionCard = () => {
             </div>
           </DialogHeader>
           <div className="max-h-[70vh] max-w-[80vw] overflow-auto">
-            <MDEditor.Markdown
-              source={answer}
-              className="h-fit  w-full  p-4"
-            />
+            <MDEditor.Markdown source={answer} className="h-fit w-full p-4" />
             <div className="h-2"></div>
             <CodeReferences filesReferences={filesReferences} />
           </div>
@@ -127,7 +124,14 @@ const AskQuestionCard = () => {
             />
             <div className="h-4"></div>
             <Button className="" type="submit" disabled={loading}>
-              Ask GitSus
+              {!loading ? (
+                "Ask Gitsus"
+              ) : (
+                <span className="flex items-center">
+                  <LoaderPinwheel className="size-4 animate-spin" />
+                  Processing...
+                </span>
+              )}
             </Button>
           </form>
         </CardContent>

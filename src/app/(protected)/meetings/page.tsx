@@ -26,7 +26,7 @@ const MeetingsPage = () => {
       <div className="h-6"></div>
       <h1 className="text-xl font-semibold">Meetings</h1>
       {meetings && meetings.length === 0 && (
-        <div className="text-center text-sm">No meetings found</div>
+        <div className="text-center text-sm mt-24">No meetings found</div>
       )}
 
       {isLoading && <div>Loading...</div>}
