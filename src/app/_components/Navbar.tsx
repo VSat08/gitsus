@@ -64,7 +64,7 @@ const Navbar = () => {
     router.push("/dashboard"); // Client-side redirect
   };
   return (
-    <nav className="fixed z-[1000] flex w-full items-center justify-between px-8 py-4">
+    <nav className="fixed top-0 z-[1000] flex w-full items-center justify-between px-8 py-4">
       <div className="flex items-center gap-1">
         <Image src="/Logo.svg" alt="Logo" width={40} height={40} />
 
