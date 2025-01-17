@@ -55,6 +55,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { LibraryBig } from "lucide-react";
 
 const Navbar = () => {
   const isMobile = useIsMobile();
@@ -64,7 +65,7 @@ const Navbar = () => {
     router.push("/dashboard"); // Client-side redirect
   };
   return (
-    <nav className="fixed top-0 z-[1000] flex w-full items-center justify-between px-8 py-4">
+    <nav className="fixed top-0 z-[1000] flex w-full items-center justify-between px-4 py-4">
       <div className="flex items-center gap-1">
         <Image src="/Logo.svg" alt="Logo" width={40} height={40} />
 
@@ -141,15 +142,20 @@ const Navbar = () => {
         )}
       </div>
 
-      <Button
-        className="] relative inline-flex h-10 w-24 overflow-hidden rounded-full p-px"
-        onClick={handleClick}
-      >
-        <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-        <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-          Get started
-        </span>
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button className="rounded-full px-8 py-5">
+          Docs <LibraryBig />
+        </Button>
+        <Button
+          className="] relative inline-flex h-10 w-24 overflow-hidden rounded-full p-px"
+          onClick={handleClick}
+        >
+          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            Get started
+          </span>
+        </Button>
+      </div>
     </nav>
   );
 };
