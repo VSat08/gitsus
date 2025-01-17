@@ -10,6 +10,10 @@ export default function Home() {
 
       <Navbar />
       {/* hero */}
+
+      <div className="bg-green-100/20">
+        <h1 className="text-6xl font-bold text-center">Build and ship software on a single, collaborative platform</h1>
+      </div>
     </main>
   );
 }
