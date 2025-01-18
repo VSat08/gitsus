@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { MarqueeDemo } from "./_components/MarqueeDemo";
 import TextRevealByWord from "@/components/ui/text-reveal";
+import Footer from "./_components/Footer";
 
 export default function Home() {
   return (
@@ -27,9 +28,9 @@ export default function Home() {
       <Navbar />
       {/* hero */}
 
-      <div className="bg-background">
+      <div className="w-full bg-background">
         {/* section 1 */}
-        <div className="flex flex-col items-start gap-20 px-4 pb-40 pt-8 md:px-24 lg:gap-32">
+        <div className="relative flex flex-col items-start gap-20 px-4 pb-40 pt-8 md:px-24 lg:gap-32">
           <div className="sticky top-28 z-10 space-y-8">
             <h1 className="pointer-events-none max-w-4xl whitespace-pre-wrap bg-gradient-to-b from-slate-100/50 via-gray-300/80 to-white bg-clip-text text-center text-3xl font-extrabold leading-none text-transparent md:text-start lg:text-6xl">
               Transform team development with AI-powered collaboration
@@ -56,7 +57,7 @@ export default function Home() {
             </div>
           </div>
 
-          <Globe className="scale-110 lg:scale-[1.7]" />
+          <Globe className="scale-100 lg:scale-[1.7]" />
           {/* <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" /> */}
         </div>
 
@@ -180,6 +181,8 @@ export default function Home() {
           <MarqueeDemo />
         </div>
       </div>
+
+      <Footer />
     </main>
   );
 }
