@@ -17,6 +17,7 @@ import {
   Presentation,
 } from "lucide-react";
 import { MarqueeDemo } from "./_components/MarqueeDemo";
+import TextRevealByWord from "@/components/ui/text-reveal";
 
 export default function Home() {
   return (
@@ -28,15 +29,17 @@ export default function Home() {
 
       <div className="bg-background">
         {/* section 1 */}
-        <div className="scroll-hidden relative flex h-screen flex-col items-center gap-20 overflow-y-auto overflow-x-hidden px-4 pb-40 pt-8 md:px-24 lg:gap-32">
+        <div className="scroll-hidden relative flex h-screen flex-col items-start gap-20 overflow-y-auto overflow-x-hidden px-4 pb-40 pt-8 md:px-24 lg:gap-32">
           {/* <div className=""></div> */}
           <div className="sticky top-28 z-10 space-y-8">
-            <h1 className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-slate-100/50 via-gray-300/80 to-white bg-clip-text text-start text-3xl font-extrabold leading-none text-transparent lg:text-6xl">
-              Build and ship software on a single, collaborative platform
+            <h1 className="pointer-events-none max-w-4xl whitespace-pre-wrap bg-gradient-to-b from-slate-100/50 via-gray-300/80 to-white bg-clip-text text-center text-3xl font-extrabold leading-none text-transparent md:text-start lg:text-6xl">
+              Transform team development with AI-powered collaboration
             </h1>
-            <p className="pointer-events-none text-gray-500 lg:text-lg">
-              Join the world’s most widely adopted AI-powered developer
-              platform.
+            <p className="pointer-events-none max-w-5xl text-center text-white/70 md:text-start lg:text-lg">
+              Experience seamless development workflows where AI enhances every
+              collaboration. From intelligent code reviews to automated
+              documentation, elevate your team's productivity on a platform that
+              evolves with your needs.
             </p>
             <div className="flex items-center justify-center gap-4 sm:justify-start">
               <button className="relative p-[3px]">
@@ -168,6 +171,12 @@ export default function Home() {
         </div>
 
         {/* section 4 */}
+        <div className="w-full py-2">
+          <div className="z-10 flex min-h-64 w-full items-center justify-center rounded-lg">
+            <TextRevealByWord  text="GitSus transforms development collaboration into an AI-powered seamless experience." />
+          </div>
+        </div>
+        {/* section 5 */}
         <div className="w-full py-2">
           <MarqueeDemo />
         </div>
