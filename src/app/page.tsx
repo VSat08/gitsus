@@ -16,6 +16,7 @@ import {
   Network,
   Presentation,
 } from "lucide-react";
+import { MarqueeDemo } from "./_components/MarqueeDemo";
 
 export default function Home() {
   return (
@@ -25,9 +26,9 @@ export default function Home() {
       <Navbar />
       {/* hero */}
 
-      <div className="bg-background px-4 md:px-24">
+      <div className="bg-background">
         {/* section 1 */}
-        <div className="scroll-hidden relative flex h-screen flex-col items-center gap-20 overflow-y-auto overflow-x-hidden pb-40 pt-8 lg:gap-32">
+        <div className="scroll-hidden relative flex h-screen flex-col items-center gap-20 overflow-y-auto overflow-x-hidden px-4 pb-40 pt-8 md:px-24 lg:gap-32">
           {/* <div className=""></div> */}
           <div className="sticky top-28 z-10 space-y-8">
             <h1 className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-slate-100/50 via-gray-300/80 to-white bg-clip-text text-start text-3xl font-extrabold leading-none text-transparent lg:text-6xl">
@@ -58,11 +59,13 @@ export default function Home() {
         </div>
 
         {/* section 2 */}
-        <div className="relative space-y-4 py-8">
+        <div className="relative space-y-4 px-4 py-8 md:px-24">
           <h1 className="sticky top-20 flex flex-col space-y-1 text-start text-5xl font-extrabold leading-none lg:text-6xl">
             <span className="font-extralight"> Ask,</span>
             <span className="font-extralight"> Share,</span>
-            <span className="text-primary"> Connect with GitSus</span>
+            <span className="">
+              Connect with <span className="text-primary">GitSus</span>
+            </span>
           </h1>
           <div className="relative shadow-2xl shadow-primary/40">
             <Safari
@@ -74,7 +77,7 @@ export default function Home() {
         </div>
 
         {/* section 3 */}
-        <div className="flex w-full flex-col gap-8 py-16 lg:flex-row">
+        <div className="flex w-full flex-col gap-8 px-4 pb-8 pt-16 md:px-24 lg:flex-row">
           <AnimatedBeamDemo />
           <div className="flex flex-col items-end gap-4">
             <div
@@ -162,6 +165,11 @@ export default function Home() {
               </MagicCard>
             </div>
           </div>
+        </div>
+
+        {/* section 4 */}
+        <div className="w-full py-2">
+          <MarqueeDemo />
         </div>
       </div>
     </main>
