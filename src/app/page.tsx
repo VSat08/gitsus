@@ -61,6 +61,7 @@ export default function Home() {
           {/* <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" /> */}
         </div>
 
+        
         {/* section 2 */}
         <div className="relative space-y-4 px-4 py-8 md:px-24">
           <h1 className="sticky top-20 flex flex-col space-y-1 text-start text-5xl font-extrabold leading-none lg:text-6xl">
