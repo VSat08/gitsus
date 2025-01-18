@@ -4,6 +4,7 @@ import * as React from "react";
 import Navbar from "./_components/Navbar";
 import Globe from "@/components/ui/globe";
 import { Button } from "@/components/ui/button";
+import Safari from "@/components/ui/safari";
 
 export default function Home() {
   return (
@@ -46,12 +47,19 @@ export default function Home() {
         </div>
 
         {/* section 2 */}
-        <div className="">
+        <div className="py-8 space-y-4">
           <h1 className="flex flex-col space-y-1 text-start text-3xl font-extrabold leading-none lg:text-6xl">
             <span className="font-extralight"> Ask,</span>
             <span className="font-extralight"> Share,</span>
             <span className="text-primary"> Connect with GitSus</span>
           </h1>
+          <div className="relative shadow-2xl shadow-primary/40">
+            <Safari
+              url="gitsus.org"
+              className="size-full"
+              videoSrc="/gitsus.mp4"
+            />
+          </div>
         </div>
       </div>
     </main>
