@@ -5,6 +5,17 @@ import Navbar from "./_components/Navbar";
 import Globe from "@/components/ui/globe";
 import { Button } from "@/components/ui/button";
 import Safari from "@/components/ui/safari";
+import { AnimatedBeamDemo } from "./_components/AnimatedBeam";
+import { MagicCard } from "@/components/ui/magic-card";
+import {
+  BotMessageSquare,
+  Brain,
+  BrainCircuit,
+  GitGraph,
+  Github,
+  Network,
+  Presentation,
+} from "lucide-react";
 
 export default function Home() {
   return (
@@ -18,7 +29,7 @@ export default function Home() {
         {/* section 1 */}
         <div className="scroll-hidden relative flex h-screen flex-col items-center gap-20 overflow-y-auto overflow-x-hidden pb-40 pt-8 lg:gap-32">
           {/* <div className=""></div> */}
-          <div className="sticky top-24 z-10 space-y-8">
+          <div className="sticky top-28 z-10 space-y-8">
             <h1 className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-slate-100/50 via-gray-300/80 to-white bg-clip-text text-start text-3xl font-extrabold leading-none text-transparent lg:text-6xl">
               Build and ship software on a single, collaborative platform
             </h1>
@@ -47,8 +58,8 @@ export default function Home() {
         </div>
 
         {/* section 2 */}
-        <div className="py-8 space-y-4">
-          <h1 className="flex flex-col space-y-1 text-start text-3xl font-extrabold leading-none lg:text-6xl">
+        <div className="relative space-y-4 py-8">
+          <h1 className="sticky top-20 flex flex-col space-y-1 text-start text-5xl font-extrabold leading-none lg:text-6xl">
             <span className="font-extralight"> Ask,</span>
             <span className="font-extralight"> Share,</span>
             <span className="text-primary"> Connect with GitSus</span>
@@ -59,6 +70,97 @@ export default function Home() {
               className="size-full"
               videoSrc="/gitsus.mp4"
             />
+          </div>
+        </div>
+
+        {/* section 3 */}
+        <div className="flex w-full flex-col gap-8 py-16 lg:flex-row">
+          <AnimatedBeamDemo />
+          <div className="flex flex-col items-end gap-4">
+            <div
+              className={
+                "grid h-full w-full grid-cols-2 items-center justify-between gap-4 md:grid-cols-2 lg:grid-cols-3"
+              }
+            >
+              <MagicCard
+                className="flex cursor-pointer flex-col items-center p-4 shadow-2xl md:justify-center"
+                gradientColor="#D9D9D955"
+              >
+                <div className="flex flex-col-reverse gap-1">
+                  <h1>AI-Powered Assistance </h1>
+                  <BrainCircuit />
+                </div>
+                <p className="mt-4 text-sm font-light text-gray-500">
+                  Streamline your workflow with AI-powered tools to automate
+                  repetitive tasks and boost productivity.
+                </p>
+              </MagicCard>
+              <MagicCard
+                className="flex cursor-pointer flex-col items-center p-4 shadow-2xl md:justify-center"
+                gradientColor="#D9D9D955"
+              >
+                <div className="flex flex-col-reverse gap-1">
+                  <h1>Smart Commit Messages </h1>
+                  <GitGraph />
+                </div>
+                <p className="mt-4 text-sm font-light text-gray-500">
+                  Generate meaningful and context-aware Git commit messages with
+                  just a click, powered by AI.
+                </p>
+              </MagicCard>
+              <MagicCard
+                className="flex cursor-pointer flex-col items-center p-4 shadow-2xl md:justify-center"
+                gradientColor="#D9D9D955"
+              >
+                <div className="flex flex-col-reverse gap-1">
+                  <h1>Optimized GitHub Integration </h1>
+                  <Github />
+                </div>
+                <p className="mt-4 text-sm font-light text-gray-500">
+                  Seamlessly connect and manage your GitHub repositories for
+                  efficient project tracking.
+                </p>
+              </MagicCard>
+              <MagicCard
+                className="flex cursor-pointer flex-col items-center p-4 shadow-2xl md:justify-center"
+                gradientColor="#D9D9D955"
+              >
+                <div className="flex flex-col-reverse gap-1">
+                  <h1>AI-Driven Meeting Insights </h1>
+                  <Presentation />
+                </div>
+                <p className="mt-4 text-sm font-light text-gray-500">
+                  Turn meetings into actionable insights—create issues and tasks
+                  with AI-generated precision.
+                </p>
+              </MagicCard>
+              <MagicCard
+                className="flex cursor-pointer flex-col items-center p-4 shadow-2xl md:justify-center"
+                gradientColor="#D9D9D955"
+              >
+                <div className="flex flex-col-reverse gap-1">
+                  <h1>Interactive Q&A Management </h1>
+                  <BotMessageSquare />
+                </div>
+                <p className="mt-4 text-sm font-light text-gray-500">
+                  Create, save, and access a dynamic Q&A repository tailored to
+                  your team's needs.
+                </p>
+              </MagicCard>
+              <MagicCard
+                className="flex cursor-pointer flex-col items-center p-4 shadow-2xl md:justify-center"
+                gradientColor="#D9D9D955"
+              >
+                <div className="flex flex-col-reverse gap-1">
+                  <h1>Collaborative Workspaces</h1>
+                  <Network />
+                </div>
+                <p className="mt-4 text-sm font-light text-gray-500">
+                  Empower your team with a unified, AI-enhanced collaborative
+                  workspace for better communication.
+                </p>
+              </MagicCard>
+            </div>
           </div>
         </div>
       </div>
